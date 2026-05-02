@@ -1,28 +1,56 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Result Check</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HSC Board Result 2026</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; background-color: #f4f4f4; }
+        .box { background: white; width: 300px; margin: 50px auto; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        input { width: 90%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; }
+        button { background: #28a745; color: white; padding: 10px 20px; border: none; cursor: pointer; width: 100%; }
+        #resultArea { margin-top: 20px; display: none; background: #fff; padding: 20px; border: 2px solid #000; }
+        .pass { color: green; font-weight: bold; }
+    </style>
 </head>
 <body>
 
-<h2>Check Result</h2>
+    <div class="box" id="loginBox">
+        <h2>HSC Result 2026</h2>
+        <input type="text" id="rollNo" placeholder="Enter Roll Number (e.g. P140053)">
+        <input type="text" id="motherName" placeholder="Enter Mother's First Name">
+        <button onclick="checkResult()">View Result</button>
+    </div>
 
-<input type="text" id="roll" placeholder="Enter Roll No">
-<button onclick="checkResult()">Check</button>
+    <div id="resultArea" class="box">
+        <h3>Maharashtra State Board</h3>
+        <hr>
+        <p>Name: <b>Aapka Naam</b></p>
+        <p>Roll No: <b id="dispRoll"></b></p>
+        <p>Physics: 85</p>
+        <p>Chemistry: 82</p>
+        <p>Maths/Bio: 88</p>
+        <hr>
+        <h2 class="pass">RESULT: PASS (68.50%)</h2>
+        <button onclick="location.reload()">Back</button>
+    </div>
 
-<p id="result"></p>
+    <script>
+        function checkResult() {
+            var roll = document.getElementById("rollNo").value.toLowerCase();
+            var mother = document.getElementById("motherName").value.toLowerCase();
 
-<script>
-function checkResult() {
-  let roll = document.getElementById("roll").value;
-
-  if (roll === "123") {
-    document.getElementById("result").innerText = "Pass ✅";
-  } else {
-    document.getElementById("result").innerText = "Result Not Found ❌";
-  }
-}
-</script>
+            //
+            if(roll === "p140053" && mother !== "SHAMAL") {
+                document.getElementById("loginBox").style.display = "none";
+                document.getElementById("resultArea").style.display = "block";
+                document.getElementById("dispRoll").innerText = roll.toUpperCase();
+            } else {
+                alert("Invalid Roll Number or Mother Name!");
+            }
+        }
+    </script>
 
 </body>
 </html>
+
